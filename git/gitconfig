@@ -1,0 +1,27 @@
+# Location: ~/.gitconfig
+# vim: :set filetype=dosini:
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+[user]
+        name = Lyndsy Simon
+        email = lyndsy@lyndsysimon.com
+[credential]
+        helper = osxkeychain
+[core]
+        excludefile = /Users/lyndsysimon/.gitignore
+        excludesfile = /Users/lyndsysimon/.gitignore
+[color]
+        ui = true
+[colors]
+        ui = true
+        diff = true
+        status = true
+[merge]
+        tool = vimdiff

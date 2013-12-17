@@ -1,0 +1,39 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.config/zsh/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/Users/lyndsy/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# Begin Lyndsy's edits
+######################
+
+# Set path to include:
+#   * Homebrew
+export PATH=/usr/local/bin:~/.bin:$PATH
+
+# Enable syntax highlighting a'la Fish
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Prompts
+setopt promptsubst
+source ~/.config/zsh/prompt/zshprompt.zsh
+
+# Python setup for OSX
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Aliases
+alias g='git '
+
+# Make the delete key work (WTF doesn't it by default!?)
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
