@@ -15,8 +15,8 @@
 [credential]
         helper = osxkeychain
 [core]
-        excludefile = /Users/lyndsysimon/.gitignore
-        excludesfile = /Users/lyndsysimon/.gitignore
+        excludefile = ~/.config/git/gitignore 
+	excludesfile = ~/.config/git/gitignore
 [color]
         ui = true
 [colors]
@@ -25,3 +25,9 @@
         status = true
 [merge]
         tool = vimdiff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
