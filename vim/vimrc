@@ -1,4 +1,5 @@
 :syntax on
+:set number
 :set modeline
 
 :set tabstop=8

@@ -30,10 +30,19 @@ source ~/.config/zsh/prompt/zshprompt.zsh
 # Python setup for OSX
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 source /usr/local/bin/virtualenvwrapper.sh
+export PIP_REQUIRE_VIRTUALENV=true
 
 # Aliases
+alias cat='lolcat'
 alias g='git '
+alias i='invoke'
+alias t='tmux'
+alias wo='workon'
+alias v='vagrant'
 
 # Make the delete key work (WTF doesn't it by default!?)
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
+
+# Ruby gems
+export PATH=/usr/local/opt/ruby/bin:$PATH

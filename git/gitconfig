@@ -10,13 +10,13 @@
 	type = cat-file -t
 	dump = cat-file -p
 [user]
-        name = Lyndsy Simon
-        email = lyndsy@lyndsysimon.com
+	name = Lyndsy Simon
+	email = lyndsy@lyndsysimon.com
 [credential]
         helper = osxkeychain
 [core]
         excludefile = ~/.config/git/gitignore 
-	excludesfile = ~/.config/git/gitignore
+	excludesfile = /Users/lyndsy/.config/git/gitignore
 [color]
         ui = true
 [colors]
@@ -26,8 +26,13 @@
 [merge]
         tool = vimdiff
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = /usr/local/bin/twdiff --resume --reverse --wait \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = current
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
