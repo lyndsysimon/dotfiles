@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 """Print out zsh prompts.
 
 """
@@ -181,7 +181,7 @@ def git_branch():
 
 
 def user_name():
-    return psutil.Process(os.getpid()).username
+    return psutil.Process(os.getpid()).username()
 
 
 def host_name():
