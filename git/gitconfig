@@ -15,8 +15,7 @@
 [credential]
         helper = osxkeychain
 [core]
-        excludefile = ~/.config/git/gitignore 
-	excludesfile = /Users/lyndsy/.config/git/gitignore
+	excludesfile = ~/.config/git/gitignore
 [color]
         ui = true
 [colors]

@@ -1,2 +1,8 @@
 *~
 .DS_Store
+.idea/*
+__pycache__/*
+*.py[coh]
+.webassets-cache/*
+.coverage
+.coveragerc
