@@ -2,38 +2,41 @@
 # vim: :set filetype=dosini:
 
 [alias]
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-	type = cat-file -t
-	dump = cat-file -p
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
 [user]
-	name = Lyndsy Simon
-	email = lyndsy@lyndsysimon.com
+    name = Lyndsy Simon
+    email = lyndsy@lyndsysimon.com
 [credential]
-        helper = osxkeychain
+    helper = osxkeychain
 [core]
-	excludesfile = ~/.config/git/gitignore
+    excludefile = ~/.config/git/gitignore 
+    editor = nvim
+[init]
+    templatedir = ~/.config/git/templates
 [color]
-        ui = true
+    ui = true
 [colors]
-        ui = true
-        diff = true
-        status = true
+    ui = true
+    diff = true
+    status = true
 [merge]
-        tool = vimdiff
+    tool = vimdiff
 [difftool "sourcetree"]
-	cmd = /usr/local/bin/twdiff --resume --reverse --wait \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = /usr/local/bin/twdiff --resume --reverse --wait \"$LOCAL\" \"$REMOTE\"
+    path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [push]
-	default = current
+    default = current
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
 [hub]
-	protocol = https
+    protocol = ssh

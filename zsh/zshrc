@@ -40,12 +40,27 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PIP_REQUIRE_VIRTUALENV=true
 
 # Aliases
-alias cat='lolcat'
+which lolcat > /dev/null 2>&1
+if [ $? = 0 ]
+then
+    alias cat='lolcat'
+fi
+
+alias t='tmux'
+
+# - Development
+
 alias g='git '
 alias i='invoke'
-alias t='tmux'
-alias wo='workon'
+alias vim='nvim'
 alias v='vagrant'
+
+# - Python virtual environments
+
+alias d='deactivate'
+alias mkv='mkvirtualenv'
+alias rmv='rmvirtualenv'
+alias wo='workon'
 
 # Make the delete key work (WTF doesn't it by default!?)
 bindkey "^[[3~" delete-char
@@ -58,3 +73,9 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 
 # Postgres config (development)
 export PGDATA=/usr/local/var/postgres
+# Terminal application config envvars
+
+export GREP_OPTIONS='--color=auto'
+
+# Set up Java for OSX Mavericks
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
