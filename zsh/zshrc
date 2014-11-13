@@ -45,6 +45,11 @@ alias v='vagrant'
 # Make the delete key work (WTF doesn't it by default!?)
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
+bindkey ';5D' backward-word
+bindkey ';5C' forward-word
 
 # Ruby gems
 export PATH=/usr/local/opt/ruby/bin:$PATH
+
+# Postgres config (development)
+export PGDATA=/usr/local/var/postgres

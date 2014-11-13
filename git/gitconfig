@@ -15,8 +15,7 @@
 [credential]
         helper = osxkeychain
 [core]
-        excludefile = ~/.config/git/gitignore 
-	excludesfile = /Users/lyndsy/.config/git/gitignore
+	excludesfile = ~/.config/git/gitignore
 [color]
         ui = true
 [colors]
@@ -36,3 +35,5 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[hub]
+	protocol = https
