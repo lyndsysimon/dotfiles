@@ -5,6 +5,8 @@ SAVEHIST=1000
 setopt autocd
 unsetopt beep
 bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/lyndsy/.zshrc'
