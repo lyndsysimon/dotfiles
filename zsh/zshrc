@@ -11,9 +11,14 @@ bindkey '^[[1;9D' backward-word
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/lyndsy/.zshrc'
 
+# Add completions directory to fpath, so zsh sees it
+fpath=(~/.config/zsh/completions $fpath)
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+compdef _invoke invoke
 
 # Begin Lyndsy's edits
 ######################
