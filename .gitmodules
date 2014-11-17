@@ -1,0 +1,18 @@
+[submodule "vim/vim/bundle/nerdtree"]
+	path = vim/vim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/vim/bundle/python-mode"]
+	path = vim/vim/bundle/python-mode
+	url = git@github.com:klen/python-mode.git
+[submodule "vim/vim/bundle/tagbar"]
+	path = vim/vim/bundle/tagbar
+	url = git@github.com:majutsushi/tagbar.git
+[submodule "vim/vim/bundle/vim-easytags"]
+	path = vim/vim/bundle/vim-easytags
+	url = git@github.com:xolox/vim-easytags.git
+[submodule "vim/vim/bundle/vim-misc"]
+	path = vim/vim/bundle/vim-misc
+	url = git@github.com:xolox/vim-misc.git
+[submodule "vim/vim/bundle/vim-fugitive"]
+	path = vim/vim/bundle/vim-fugitive
+	url = git@github.com:lyndsysimon/vim-fugitive.git
