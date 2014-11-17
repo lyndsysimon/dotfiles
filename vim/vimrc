@@ -1,6 +1,8 @@
 :syntax on
 :set number
 :set modeline
+:set list
+:set lcs=tab:>-,eol:$
 
 :set tabstop=8
 :set expandtab
@@ -8,3 +10,11 @@
 :set softtabstop=4
 
 :set backspace=indent,eol,start
+
+call pathogen#infect()
+
+if has('nvim')
+    runtime! python_setup.vim
+endif
+
+let g:jedi#use_tabs_not_buffers = 0
