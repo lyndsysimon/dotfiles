@@ -2,7 +2,7 @@
 :set number
 :set modeline
 :set list
-:set lcs=tab:>-,eol:$
+:set lcs=tab:>-,eol:¬,trail:▒
 
 :set tabstop=8
 :set expandtab
@@ -17,4 +17,9 @@ if has('nvim')
     runtime! python_setup.vim
 endif
 
-let g:jedi#use_tabs_not_buffers = 0
+filetype plugin on
+filetype indent on
+
+map <C-F11> :!ctags -R -f $VIRTUAL_ENV/tags $VIRTUAL_ENV/lib/python2.7/site-packages<CT>
+set tags=$VIRTUAL_ENV/tags
+
