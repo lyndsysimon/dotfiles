@@ -15,7 +15,7 @@
 [credential]
     helper = osxkeychain
 [core]
-    excludefile = ~/.config/git/gitignore 
+    excludesfile = ~/.config/git/gitignore
     editor = nvim
 [init]
     templatedir = ~/.config/git/templates
