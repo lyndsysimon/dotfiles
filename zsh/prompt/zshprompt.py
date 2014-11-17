@@ -115,7 +115,8 @@ def shorten_path(path, max_length=20):
     '''
     # Replace the user's homedir in path with ~
     homedir = os.path.expanduser('~')
-    if path.startswith(homedir):
+    relative = path.startswith(homedir)
+    if relative:
         path = '~' + path[len(homedir):]
 
     parts = path.split(os.sep)
@@ -136,7 +137,7 @@ def shorten_path(path, max_length=20):
                 path = os.sep.join(parts)
                 continue
         break
-    return path
+    return path if relative else "/" + path
 
 
 def current_working_dir():
