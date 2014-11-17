@@ -1,17 +1,12 @@
 #compdef invoke
 
-# you may wish to modify the expansion options here
-# PS: 'f' is the flag making one entry per line
 cmds=();
 index=0;
-for item in $(invoke --list | tail -n +3 | awk '{ if ($1 != "") print $1 }')
+# Use the output of "invoke --list" to build the list of available commands
+for item in $(invoke --list | grep "^\ \ \\b" | awk '{ if ($1 != "") print $1 }')
 do
-    let index+=1
-    cmds[$index]=$item
+    let index+=1;
+    cmds[$index]=$item;
 done
 
-# main advantage here is that it is easy to understand, see alternative below
-_describe 'a description of the completion options' cmds
-
-# this is the equivalent _arguments command... too complex for what it does
-## _arguments '*:foo:(${cmds})'
+_describe 'available invoke tasks' cmds
