@@ -19,6 +19,7 @@ compinit
 # End of lines added by compinstall
 
 compdef _invoke invoke
+compdef _invoke inv
 
 # Begin Lyndsy's edits
 ######################
