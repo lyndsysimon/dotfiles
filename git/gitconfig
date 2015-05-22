@@ -2,6 +2,10 @@
 # vim: :set filetype=dosini:
 
 [alias]
+    # add changes to tracked files, but confirm each chunk manually
+    a = add -p .
+    # show diff between HEAD and what's staged for commit
+    ds = diff --cached
     co = checkout
     ci = commit
     st = status
@@ -27,12 +31,6 @@
     status = true
 [merge]
     tool = vimdiff
-[difftool "sourcetree"]
-    cmd = /usr/local/bin/twdiff --resume --reverse --wait \"$LOCAL\" \"$REMOTE\"
-    path = 
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
 [push]
     default = current
 [filter "media"]
