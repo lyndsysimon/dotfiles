@@ -11,6 +11,14 @@ bindkey '^[[1;9D' backward-word
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/lyndsy/.zshrc'
 
+# tmuxinator
+export EDITOR=vim
+which tmuxinator > /dev/null 2>&1
+if [ $? = 0 ]
+then
+    alias t='tmuxinator'
+fi
+
 # Add completions directory to fpath, so zsh sees it
 fpath=(~/.config/zsh/completions $fpath)
 
@@ -47,7 +55,6 @@ then
     alias cat='lolcat'
 fi
 
-alias t='tmux'
 
 # - Development
 
