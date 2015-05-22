@@ -47,6 +47,7 @@ source ~/.config/zsh/prompt/zshprompt.zsh
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_REQUIRE_VIRTUALENV=true
+export PIP_CERT=~/.config/ssl/certs/DigiCertHighAssuranceEVRootCA.pem
 
 # Aliases
 which lolcat > /dev/null 2>&1
