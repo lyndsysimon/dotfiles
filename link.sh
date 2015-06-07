@@ -16,3 +16,6 @@ ln -si ~/.nvim ~/.vim
 
 # Git
 ln -si $dir/git/gitconfig ~/.gitconfig
+
+# tmux
+ln -si $dir/tmux/tmux.conf ~/.tmux.conf
