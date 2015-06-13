@@ -19,3 +19,6 @@ ln -si $dir/git/gitconfig ~/.gitconfig
 
 # tmux
 ln -si $dir/tmux/tmux.conf ~/.tmux.conf
+
+# Tmuxinator
+ln -si $dir/tmuxinator ~/.tmuxinator
