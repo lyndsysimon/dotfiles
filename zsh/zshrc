@@ -67,6 +67,7 @@ alias fucking='sudo'
 alias g='git '
 alias i='invoke'
 alias v='vagrant'
+alias m='python manage.py'
 
 # - Python virtual environments
 
