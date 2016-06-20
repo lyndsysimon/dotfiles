@@ -69,6 +69,13 @@ alias i='invoke'
 alias v='vagrant'
 alias m='python manage.py'
 
+# - gitdoge
+
+alias so='git'
+alias very='git'
+alias such='git'
+alias wow='git push'
+
 # - Python virtual environments
 
 alias d='deactivate'
