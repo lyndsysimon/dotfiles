@@ -20,7 +20,7 @@
     helper = osxkeychain
 [core]
     excludesfile = ~/.config/git/gitignore
-    editor = nvim
+    editor = vim
 [init]
     templatedir = ~/.config/git/templates
 [color]
