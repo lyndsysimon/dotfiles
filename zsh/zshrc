@@ -11,6 +11,10 @@ bindkey '^[[1;9D' backward-word
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/lyndsy/.zshrc'
 
+# Docker
+alias dm="docker-machine"
+alias dc="docker-compose"
+
 # tmuxinator
 export EDITOR=vim
 which tmuxinator > /dev/null 2>&1
