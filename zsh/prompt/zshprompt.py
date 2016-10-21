@@ -160,6 +160,20 @@ def current_working_dir():
     return cwd
 
 
+def gemset():
+    try:
+        output = subprocess.check_output("rvm gemset list",
+                stderr=subprocess.PIPE, shell=True)
+    except subprocess.CalledProcessError:
+        # Non-zero return code, assume the current working dir is not in a git
+        # repo.
+        return ''
+    line = [each for each in output.split('\n') if each[:3] == '=> ']
+    if not line or line[0] == '=> (default)':
+        return ''
+    return line[0][3:]
+
+
 def virtualenv():
     path = os.environ.get('VIRTUAL_ENV', '')
     if path:
@@ -217,6 +231,7 @@ def right_prompt(last_exit_status):
 
     parts = [
         color(last_exit_status, foreground='red'),
+        color(gemset(), foreground='magenta'),
         color(virtualenv(), foreground='blue'),
         color(git_branch(), foreground='yellow'),
         color(ssh_user_at_host(), foreground='white'),
