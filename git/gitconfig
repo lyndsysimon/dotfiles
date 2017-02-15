@@ -6,6 +6,7 @@
     a = add -p .
     # show diff between HEAD and what's staged for commit
     ds = diff --cached
+    dl = diff HEAD~1..HEAD
     co = checkout
     ci = commit
     st = status
