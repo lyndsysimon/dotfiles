@@ -15,6 +15,7 @@
     type = cat-file -t
     dump = cat-file -p
     gud = push -f
+    recent-branches = for-each-ref --sort=-committerdate refs/heads/ | head | sed "s/refs.heads.//g"
 [user]
     name = Lyndsy Simon
     email = lyndsy@lyndsysimon.com
