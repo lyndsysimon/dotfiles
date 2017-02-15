@@ -76,6 +76,10 @@ alias very='git'
 alias such='git'
 alias wow='git push'
 
+# - gityolo
+
+alias yolo='git push -f'
+
 # - Python virtual environments
 
 alias d='deactivate'
