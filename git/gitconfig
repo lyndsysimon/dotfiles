@@ -16,6 +16,8 @@
     dump = cat-file -p
     gud = push -f
     recent-branches = for-each-ref --sort=-committerdate refs/heads/ | head | sed "s/refs.heads.//g"
+    # check out the most recent previous branch
+    back = "!f() { git reflog | grep \": checkout:\"  | head -n 1 | awk '{ print $6 }'; }; git checkout `f`"
 [user]
     name = Lyndsy Simon
     email = lyndsy@lyndsysimon.com
