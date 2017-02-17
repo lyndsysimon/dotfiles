@@ -48,12 +48,11 @@ setopt promptsubst
 
 autoload -U colors && colors
 function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i : substr($i,1,1)"/")}' }
-happy_face() {
-    happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' '♪~ ᕕ(ᐛ )ᕗ' '\ (•◡•) /' '(~˘▾˘)~');
-    eval 'echo -n ${happy_faces[$RANDOM % ${#happy_faces[@]}]}'
+
+precmd() {
+    happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' 'ᕕ(ᐛ )ᕗ' '\ (•◡•) /' '(~˘▾˘)~');
+    export PS1=$'%(?.%F{green}.%F{red})█%f %D{%H:%M:%S} %F{green}%(?.$happy_faces[RANDOM % $#happy_faces + 1].)%f \n█ [`shortpath`]-> '
 }
-export PS1='%(?.%F{green}.%F{red})█%f %D{%H:%M:%S} %(?.`happy_face`.'')
-█ [`shortpath`]-> '
 
 # Python setup for OSX
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
