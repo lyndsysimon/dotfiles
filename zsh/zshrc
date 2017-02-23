@@ -51,7 +51,8 @@ function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i 
 
 precmd() {
     happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' 'ᕕ(ᐛ )ᕗ' '\ (•◡•) /' '(~˘▾˘)~');
-    export PS1=$'%(?.%F{green}.%F{red})█%f %D{%H:%M:%S} %F{green}%(?.$happy_faces[RANDOM % $#happy_faces + 1].)%f \n█ [`shortpath`]-> '
+    sad_faces=('ಠ_ಠ' '(ง`-`)ง' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
+    export PS1=$'%(?.%F{green}.%F{red})█%f %D{%H:%M:%S} %(?.%F{green}$happy_faces[RANDOM % $#happy_faces + 1].%F{red}$sad_faces[RANDOM % $#sad_faces + 1])%f \n█ [`shortpath`]-> '
 }
 
 # Python setup for OSX
