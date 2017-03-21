@@ -24,6 +24,11 @@ augroup configgroup
 
     autocmd FileType python setlocal commentstring=#\ %s
 
+    autocmd FileType javascript setlocal tabstop=2
+    autocmd FileType javascript setlocal shiftwidth=2
+    autocmd FileType javascript setlocal softtabstop=2
+    autocmd FileType javascript setlocal commentstring=//%s
+
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
     autocmd FileType ruby setlocal softtabstop=2
