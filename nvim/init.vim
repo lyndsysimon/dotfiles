@@ -29,10 +29,10 @@ augroup configgroup
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
 
-    autocmd FileType yml setlocal tabstop=2
-    autocmd FileType yml setlocal shiftwidth=2
-    autocmd FileType yml setlocal softtabstop=2
-    autocmd FileType yml setlocal commentstring=#\ %s
+    autocmd FileType yaml setlocal tabstop=2
+    autocmd FileType yaml setlocal shiftwidth=2
+    autocmd FileType yaml setlocal softtabstop=2
+    autocmd FileType yaml setlocal commentstring=#\ %s
 
 augroup END
 " }}}
