@@ -46,17 +46,11 @@ PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
 # gems
 # TODO: Generalize this directory to support Linux
 RUBY_BIN_DIR=/usr/local/opt/ruby/bin
-if [ -d $RUBY_BIN_DIR ]
-then
-    PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
-fi
+[[ -d $RUBY_BIN_DIR ]] && PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
 
 # rvm
 RVM_DIR=$HOME/.rvm/bin
-if [ -d $RVM_DIR ]
-then
-    PATH_PREPENDS=$PATH_PREPENDS:$RVM_DIR
-fi
+[[ -d $RVM_DIR ]] && PATH_PREPENDS=$PATH_PREPENDS:$RVM_DIR
 
 export PATH=$PATH_PREPENDS:$PATH
 # }}}
@@ -74,16 +68,9 @@ function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i 
 function zle-line-init zle-keymap-select precmd {
     RPS1=''
     # git branch
-    git branch &> /dev/null
-    if [ $? -eq 0 ]
-    then
-        RPS1=$RPS1$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
-    fi
+    git branch &> /dev/null && RPS1=$RPS1$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
     # python virtualenv
-    if ! [ -z "${VIRTUAL_ENV+_}" ]
-    then
-        RPS1=$RPS1$'%F{yellow}🐍 :`basename "$VIRTUAL_ENV"`%f '
-    fi
+    [[ ! -z "${VIRTUAL_ENV+_}" ]] && RPS1=$RPS1$'%F{yellow}🐍 :`basename "$VIRTUAL_ENV"`%f '
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPS1"
 
@@ -134,11 +121,7 @@ fi
 # }}}
 
 # --- Aliases {{{
-which lolcat > /dev/null 2>&1
-if [ $? = 0 ]
-then
-    alias cat='lolcat'
-fi
+which lolcat &> /dev/null && alias cat='lolcat'
 
 alias fucking='sudo'
 
@@ -148,13 +131,7 @@ alias g='git '
 alias i='invoke'
 
 which nvim 1>/dev/null
-if [ $? -eq 0 ]
-then
-    alias v='nvim'
-    alias vim='nvim'
-else
-    alias v='vim'
-fi
+[[ $? -eq 0 ]] && alias v='nvim' vim='nvim' || alias v='vim'
 alias m='python manage.py'
 
 # - gitdoge
