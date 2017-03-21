@@ -1,67 +1,126 @@
-# Lines configured by zsh-newuser-install
+# --- History {{{
 HISTFILE=~/.config/zsh/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd
+# }}}
+
+# --- Options {{{
 unsetopt beep
-bindkey -e
-bindkey '^[[1;9C' forward-word
-bindkey '^[[1;9D' backward-word
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/lyndsy/.zshrc'
+# }}}
 
-# Docker
-alias dm="docker-machine"
-alias dc="docker-compose"
+# --- Binds {{{
 
-# tmuxinator
-export EDITOR=vim
-which tmuxinator > /dev/null 2>&1
-if [ $? = 0 ]
-then
-    alias t='tmuxinator'
-fi
+# up and down arrows complete a partial command from history
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+
+# Vim mode
+bindkey -v
+
+# TODO: Decide if this section is still needed
+# Make the delete key work (WTF doesn't it by default!?)
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
+bindkey ';5D' backward-word
+bindkey ';5C' forward-word
+# }}}
+
+# --- Completions {{{
+zstyle :compinstall filename "$HOME/.zshrc"
 
 # Add completions directory to fpath, so zsh sees it
 fpath=(~/.config/zsh/completions $fpath)
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+# }}}
 
-compdef _invoke invoke
-compdef _invoke inv
+# --- $PATH {{{
 
-# Begin Lyndsy's edits
-######################
+# user scripts
+PATH_PREPENDS=~/.bin
 
-# Set path to include:
-#   * Homebrew
-export PATH=/usr/local/bin:~/.bin:$PATH
+# homebrew
+PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
 
-# Enable syntax highlighting a'la Fish
+# gems
+# TODO: Generalize this directory to support Linux
+RUBY_BIN_DIR=/usr/local/opt/ruby/bin
+if [ -d $RUBY_BIN_DIR ]
+then
+    PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
+fi
+
+# rvm
+RVM_DIR=$HOME/.rvm/bin
+if [ -d $RVM_DIR ]
+then
+    PATH_PREPENDS=$PATH_PREPENDS:$RVM_DIR
+fi
+
+export PATH=$PATH_PREPENDS:$PATH
+# }}}
+
+# --- Plugins {{{
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# }}}
 
-# Prompts
+# --- Prompt {{{
 setopt promptsubst
 
 autoload -U colors && colors
 function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i : substr($i,1,1)"/")}' }
 
 precmd() {
-    happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' 'ᕕ(ᐛ )ᕗ' '\ (•◡•) /' '(~˘▾˘)~');
-    sad_faces=('ಠ_ಠ' '(ง`-`)ง' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
-    export PS1=$'%(?.%F{green}.%F{red})█%f %D{%H:%M:%S} %(?.%F{green}$happy_faces[RANDOM % $#happy_faces + 1].%F{red}$sad_faces[RANDOM % $#sad_faces + 1])%f \n█ [`shortpath`]-> '
-}
+    happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' '\ (•◡•) /' '(~˘▾˘)~');
+    sad_faces=('ಠ_ಠ' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
+    # colored block for last command exit status
+    PS1=$'%(?.%F{green}.%F{red})█%f'
+    # time
+    PS1=$PS1$' %D{%H:%M:%S}'
 
-# Python setup for OSX
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+    # happy/sad face
+    PS1=$PS1$' %(?.%F{green}$happy_faces[RANDOM % $#happy_faces + 1].%F{red}$sad_faces[RANDOM % $#sad_faces + 1])%f'
+
+    # Location line
+    # path
+    PS1=$PS1$'\n█ [`shortpath`]-> '
+
+    RPROMPT=''
+    # git branch
+    git branch &> /dev/null
+    if [ $? -eq 0 ]
+    then
+        RPROMPT=$RPROMPT$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
+    fi
+    # python virtualenv
+    if ! [ -z "${VIRTUAL_ENV+_}" ]
+    then
+        RPROMPT=$RPROMPT$'%F{yellow}🐍 :`basename "$VIRTUAL_ENV"`%f '
+    fi
+}
+# }}}
+
+# --- Program-specific Settings {{{
+# --- Python {{{
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_REQUIRE_VIRTUALENV=true
-export PIP_CERT=~/.config/ssl/certs/DigiCertHighAssuranceEVRootCA.pem
 
-# Aliases
+export PIP_CERT=~/.config/ssl/certs/DigiCertHighAssuranceEVRootCA.pem
+# }}}
+export PGDATA=/usr/local/var/postgres
+export GREP_OPTIONS='--color=auto'
+
+# --- Java  {{{
+JAVA_DIR="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+if [ -d $JAVA_DIR ]
+then
+    export JAVA_HOME=$JAVA_DIR
+fi
+# }}}
+# }}}
+
+# --- Aliases {{{
 which lolcat > /dev/null 2>&1
 if [ $? = 0 ]
 then
@@ -79,6 +138,7 @@ which nvim 1>/dev/null
 if [ $? -eq 0 ]
 then
     alias v='nvim'
+    alias vim='nvim'
 else
     alias v='vim'
 fi
@@ -102,22 +162,6 @@ alias mkv='mkvirtualenv'
 alias rmv='rmvirtualenv'
 alias wo='workon'
 
-# Make the delete key work (WTF doesn't it by default!?)
-bindkey "^[[3~" delete-char
-bindkey "^[3;5~" delete-char
-bindkey ';5D' backward-word
-bindkey ';5C' forward-word
+# }}}
 
-# Ruby gems
-export PATH=/usr/local/opt/ruby/bin:$PATH
-
-# Postgres config (development)
-export PGDATA=/usr/local/var/postgres
-# Terminal application config envvars
-
-export GREP_OPTIONS='--color=auto'
-
-# Set up Java for OSX Mavericks
-export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# vim:foldmethod=marker:foldlevel=0
