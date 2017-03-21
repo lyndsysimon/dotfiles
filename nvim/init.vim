@@ -18,7 +18,7 @@ nnoremap gV `[v`]
 "-- Language-specific settings {{{
 augroup configgroup
         "clear autocmds for the current group
-    autocmd! 
+    autocmd!
 
     autocmd BufEnter Makefile setlocal noexpandtab
 
