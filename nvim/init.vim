@@ -62,6 +62,8 @@ set wildignore=*~,*.pyc "ignore compiled files
 set modelines=1 "check last line of the file for a modeline
 
 set lazyredraw "fewer redraws == faster macros
+
+set clipboard+=unnamedplus
 " }}}
 
 "-- Search {{{
