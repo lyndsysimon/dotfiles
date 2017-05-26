@@ -68,6 +68,8 @@ autoload -U colors && colors
 function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i : substr($i,1,1)"/")}' }
 
 function zle-line-init zle-keymap-select precmd {
+    local EXIT_STATUS
+    EXIT_STATUS=$?
     RPS1=''
     # git branch
     git branch &> /dev/null && RPS1=$RPS1$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
@@ -82,7 +84,10 @@ function zle-line-init zle-keymap-select precmd {
         happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' '\ (•◡•) /' '(~˘▾˘)~');
         sad_faces=('ಠ_ಠ' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
         # colored block for last command exit status
-        PS1=$'%(?.%F{green}.%F{red})█%f'
+        [[ EXIT_STATUS -eq 0 ]] && PS1=$'%F{green}'
+        [[ EXIT_STATUS -ne 0 ]] && PS1=$'%F{red}'
+        PS1=$PS1$'█%f'
+        # PS1=$'%(EXIT_STATUS.%F{green}.%F{red})█%f'
         # time
         PS1=$PS1$' %D{%H:%M:%S}'
 
