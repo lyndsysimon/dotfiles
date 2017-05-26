@@ -51,6 +51,8 @@ RUBY_BIN_DIR=/usr/local/opt/ruby/bin
 # rvm
 RVM_DIR=$HOME/.rvm/bin
 [[ -d $RVM_DIR ]] && PATH_PREPENDS=$PATH_PREPENDS:$RVM_DIR
+# Ensure RVM is a function, not an executable
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 export PATH=$PATH_PREPENDS:$PATH
 # }}}
