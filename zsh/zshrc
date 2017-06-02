@@ -162,4 +162,12 @@ alias wo='workon'
 
 # }}}
 
+# --- Functions {{{
+
+git-prune-merged-branches() {
+    git checkout sandbox && git branch --merged | egrep -v "(^\*|sandbox)" | xargs git branch -d && git checkout `git reflog | grep ": checkout: " | head -n 1 | awk '{ print $6 }'`
+}
+
+# }}}
+
 # vim:foldmethod=marker:foldlevel=0
