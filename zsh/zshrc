@@ -1,3 +1,19 @@
+# --- $PATH {{{
+
+# user scripts
+PATH_PREPENDS=~/.bin
+
+# homebrew
+PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
+
+# gems
+# TODO: Generalize this directory to support Linux
+RUBY_BIN_DIR=/usr/local/opt/ruby/bin
+[[ -d $RUBY_BIN_DIR ]] && PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
+
+export PATH=$PATH_PREPENDS:$PATH
+# }}}
+
 # --- History {{{
 HISTFILE=~/.config/zsh/.histfile
 HISTSIZE=1000
@@ -89,6 +105,7 @@ zle -N zle-keymap-select
 
 # --- Program-specific Settings {{{
 # --- Python {{{
+# Note - this must happen after PATH has been set
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -96,6 +113,12 @@ export PIP_CERT=~/.config/ssl/certs/DigiCertHighAssuranceEVRootCA.pem
 # }}}
 export PGDATA=/usr/local/var/postgres
 export GREP_OPTIONS='--color=auto'
+
+# eval "$(rbenv init -)"
+
+CHRUBY_DIR=/usr/local/opt/chruby/share/chruby
+[[ -d $CHRUBY_DIR ]] && source $CHRUBY_DIR/chruby.sh
+[[ -d $CHRUBY_DIR ]] && source $CHRUBY_DIR/auto.sh
 
 # --- Java  {{{
 JAVA_DIR="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
@@ -115,6 +138,7 @@ alias fucking='sudo'
 
 alias g='git '
 alias i='invoke'
+alias b='bundle exec'
 
 which nvim 1>/dev/null
 [[ $? -eq 0 ]] && alias v='nvim' vim='nvim' || alias v='vim'
@@ -146,28 +170,10 @@ git-prune-merged-branches() {
     git checkout sandbox && git branch --merged | egrep -v "(^\*|sandbox)" | xargs git branch -d && git checkout `git reflog | grep ": checkout: " | head -n 1 | awk '{ print $6 }'`
 }
 
-# }}}
+cop() {
+    git diff --name-only HEAD locus/sandbox | grep "\.rb$" | xargs rubocop --config .rubocop.yml --force-exclusion
+}
 
-# --- $PATH {{{
-
-# user scripts
-PATH_PREPENDS=~/.bin
-
-# homebrew
-PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
-
-# gems
-# TODO: Generalize this directory to support Linux
-RUBY_BIN_DIR=/usr/local/opt/ruby/bin
-[[ -d $RUBY_BIN_DIR ]] && PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
-
-# rvm
-RVM_DIR=$HOME/.rvm/bin
-[[ -d $RVM_DIR ]] && PATH_PREPENDS=$PATH_PREPENDS:$RVM_DIR
-# Ensure RVM is a function, not an executable
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-export PATH=$PATH_PREPENDS:$PATH
 # }}}
 
 # vim:foldmethod=marker:foldlevel=0
