@@ -1,7 +1,7 @@
 # --- $PATH {{{
 
 # user scripts
-PATH_PREPENDS=~/.bin
+PATH_PREPENDS=~/.bin/locus:~/.bin
 
 # homebrew
 PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
@@ -165,15 +165,6 @@ alias wo='workon'
 # }}}
 
 # --- Functions {{{
-
-git-prune-merged-branches() {
-    git checkout sandbox && git branch --merged | egrep -v "(^\*|sandbox)" | xargs git branch -d && git checkout `git reflog | grep ": checkout: " | head -n 1 | awk '{ print $6 }'`
-}
-
-cop() {
-    git diff --name-only HEAD locus/sandbox | grep "\.rb$" | xargs rubocop --config .rubocop.yml --force-exclusion
-}
-
 # }}}
 
 # vim:foldmethod=marker:foldlevel=0

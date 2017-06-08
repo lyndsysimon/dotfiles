@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+####################
+# Description: Reset and populate cobalt2 using "fastest" settings
+# Author: Lyndsy Simon
+# Version: 1.0.0
+####################
+
+RECORDS_TO_CREATE=1 MONITORING_RECORDS_TO_CREATE=1 bundle exec rake db:repop

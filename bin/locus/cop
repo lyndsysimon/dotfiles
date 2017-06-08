@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+####################
+# Description: Run rubocop only on *.rb files that have been changed since the HEAD was branched off sandbox
+# Author: Lyndsy Simon
+# Version: 1.0.0
+####################
+
+# My origin repository is named "locus", but everyone else's is probably going to be "origin"
+[[ `whoami` = "lyndsy.simon" ]] && ORIGIN="locus" || ORIGIN="origin"
+
+git diff --name-only HEAD $ORIGIN/sandbox | grep "\.rb$" | xargs rubocop --config .rubocop.yml --force-exclusion

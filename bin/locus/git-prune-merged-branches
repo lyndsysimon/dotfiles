@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+####################
+# Description: Remove branches that contain no commits not included in `sandbox`
+# Author: Lyndsy Simon
+# Version: 1.0.0
+####################
+
+git checkout sandbox && git branch --merged | egrep -v "(^\*|sandbox)" | xargs git branch -d && git checkout `git reflog | grep ": checkout: " | head -n 1 | awk '{ print $6 }'`
