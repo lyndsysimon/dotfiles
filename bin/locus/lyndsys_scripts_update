@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+cd ~/.lyndsys_dotfiles
+git pull
