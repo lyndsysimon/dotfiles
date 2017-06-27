@@ -11,6 +11,13 @@ inoremap jj <esc>
 nnoremap gV `[v`]
 " }}}
 
+"-- Spaces & Tabs {{{
+set tabstop=4 "visual spaces per tab character
+set expandtab "use spaces instead of tabs by default
+set softtabstop=4 "number of spaces that represent a tab
+set shiftwidth=4 "number of spaces for automatic indentation
+" }}}
+
 "-- Language-specific settings {{{
 augroup configgroup
         "clear autocmds for the current group
@@ -84,13 +91,6 @@ set foldmethod=indent "fold based on indentation level. Python, fuck yeah.
     " move up and down based on visual lines - respects wrapping
 nnoremap j gj
 nnoremap k gk
-" }}}
-
-"-- Spaces & Tabs {{{
-set tabstop=4 "visual spaces per tab character
-set expandtab "use spaces instead of tabs by default
-set softtabstop=4 "number of spaces that represent a tab
-set shiftwidth=4 "number of spaces for automatic indentation
 " }}}
 
 "-- Backups {{{
