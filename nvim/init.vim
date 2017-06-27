@@ -1,11 +1,3 @@
-"-- TODOS {{{
-" Investigate gundo.vim - graphical undo tree browser
-" Investigate 'the Silver Searcher', plus ag.vim - a code search tool
-" Investigate 'CtrlP' - fuzzy search for vim
-    " https://github.com/kien/ctrlp.vim.git
-" Write a function to ensure whitespace is stripped, except for a newline, on save
-" }}}
-
 "-- Path {{{
 set path+=** "Search subdirectories recursively when trying to open a file
 " }}}
