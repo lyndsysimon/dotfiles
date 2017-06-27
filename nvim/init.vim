@@ -26,6 +26,8 @@ augroup configgroup
 
     autocmd BufEnter Makefile setlocal noexpandtab
 
+    autocmd FileType * syntax on
+
     autocmd FileType python setlocal commentstring=#\ %s
 
     autocmd FileType javascript setlocal tabstop=2
@@ -47,7 +49,7 @@ augroup END
 " }}}
 
 "-- UI config {{{
-syntax enable "turn on syntax processing
+
 colorscheme slate
 filetype indent on "load filetype-specific indentation files
 
