@@ -1,43 +1,14 @@
-"-- Plugins {{{
-" using vim-plug
-call plug#begin()
+"-- Prereqs{{{
+" search subdirectories recursively when trying to open a file
+set path+=**
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-nnoremap <leader>1 :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+" use single-quote as leader
+let mapleader="'"
 
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" TODO: This doesn't work :(
-" if nvim is opened without specifying a file, open NERDTree by default
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
-
-Plug 'ryanoasis/vim-devicons'
-
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_realtime = 1
-let g:gitgutter_eager = 1
-set updatetime=250 " Note: This may negatively impact performance. Default is 4000.
-
-Plug 'junegunn/rainbow_parentheses.vim'
-
-call plug#end()
-" }}}
-
-"-- Path {{{
-set path+=** "Search subdirectories recursively when trying to open a file
-" }}}
-
-"-- Remaps {{{
-let mapleader="'" "use single-quote as leader
-
-    " jj leaves insert mode
+" jj leaves insert mode
 inoremap jj <esc>
-    " highlight the text entered the last time you were in INSERT mode
+
+" highlight the text entered the last time you were in INSERT mode
 nnoremap gV `[v`]
 " }}}
 
@@ -156,6 +127,36 @@ function! ToggleFolding()
 endfunc
 nnoremap <leader>f :call ToggleFolding()<CR>
 
+" }}}
+
+"-- Plugins {{{
+" using vim-plug
+call plug#begin()
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nnoremap <leader>1 :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" TODO: This doesn't work :(
+" if nvim is opened without specifying a file, open NERDTree by default
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+set updatetime=250 " Note: This may negatively impact performance. Default is 4000.
+
+Plug 'junegunn/rainbow_parentheses.vim'
+
+call plug#end()
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
