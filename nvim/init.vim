@@ -1,3 +1,29 @@
+"-- Plugins {{{
+" using vim-plug
+call plug#begin()
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nnoremap <leader>1 :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" TODO: This doesn't work :(
+" if nvim is opened without specifying a file, open NERDTree by default
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+set updatetime=250 " Note: This may negatively impact performance. Default is 4000.
+
+call plug#end()
+" }}}
+
 "-- Path {{{
 set path+=** "Search subdirectories recursively when trying to open a file
 " }}}
@@ -126,20 +152,6 @@ function! ToggleFolding()
 endfunc
 nnoremap <leader>f :call ToggleFolding()<CR>
 
-" }}}
-
-"-- Plugins {{{
-" using vim-plug
-call plug#begin()
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-nnoremap <leader>1 :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
-call plug#end()
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
