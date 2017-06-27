@@ -146,9 +146,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " TODO: This doesn't work :(
 " if nvim is opened without specifying a file, open NERDTree by default
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
-
+augroup NERDTreeConfig
+    au!
+    au StdinReadPre * let s:std_in=1
+    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree
+augroup END
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'airblade/vim-gitgutter'
