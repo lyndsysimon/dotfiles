@@ -143,7 +143,6 @@ let NERDTreeDirArrows = 1
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" TODO: This doesn't work :(
 " if nvim is opened without specifying a file, open NERDTree by default
 augroup NERDTreeConfig
     au!
@@ -158,6 +157,14 @@ let g:gitgutter_eager = 1
 set updatetime=250 " Note: This may negatively impact performance. Default is 4000.
 
 Plug 'junegunn/rainbow_parentheses.vim'
+
+Plug 'tpope/vim-fugitive'
+nnoremap <leader>gs :Gstatus<CR>
+
+Plug 'vim-airline/vim-airline'
+let g:airline_powerline_fonts = 1
+
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 " }}}
