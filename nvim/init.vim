@@ -21,30 +21,29 @@ set shiftwidth=4 "number of spaces for automatic indentation
 
 "-- Language-specific settings {{{
 augroup configgroup
-        "clear autocmds for the current group
-    autocmd!
+    " clear autocmds for the current group
+    au!
 
-    autocmd BufEnter Makefile setlocal noexpandtab
+    au BufEnter Makefile setlocal noexpandtab
 
-    autocmd FileType * syntax on
+    au FileType * syntax on
 
-    autocmd FileType python setlocal commentstring=#\ %s
+    au FileType python setlocal commentstring=#\ %s
 
-    autocmd FileType javascript setlocal tabstop=2
-    autocmd FileType javascript setlocal shiftwidth=2
-    autocmd FileType javascript setlocal softtabstop=2
-    autocmd FileType javascript setlocal commentstring=//%s
+    au FileType javascript setlocal tabstop=2
+    au FileType javascript setlocal shiftwidth=2
+    au FileType javascript setlocal softtabstop=2
+    au FileType javascript setlocal commentstring=//%s
 
-    autocmd FileType ruby setlocal tabstop=2
-    autocmd FileType ruby setlocal shiftwidth=2
-    autocmd FileType ruby setlocal softtabstop=2
-    autocmd FileType ruby setlocal commentstring=#\ %s
+    au FileType ruby setlocal tabstop=2
+    au FileType ruby setlocal shiftwidth=2
+    au FileType ruby setlocal softtabstop=2
+    au FileType ruby setlocal commentstring=#\ %s
 
-    autocmd FileType yaml setlocal tabstop=2
-    autocmd FileType yaml setlocal shiftwidth=2
-    autocmd FileType yaml setlocal softtabstop=2
-    autocmd FileType yaml setlocal commentstring=#\ %s
-
+    au FileType yaml setlocal tabstop=2
+    au FileType yaml setlocal shiftwidth=2
+    au FileType yaml setlocal softtabstop=2
+    au FileType yaml setlocal commentstring=#\ %s
 augroup END
 " }}}
 
