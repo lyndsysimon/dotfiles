@@ -128,11 +128,16 @@ nnoremap <leader>f :call ToggleFolding()<CR>
 
 " }}}
 
-"-- vim-plug {{{
+"-- Plugins {{{
+" using vim-plug
 call plug#begin()
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nnoremap <leader>1 :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 call plug#end()
 " }}}
