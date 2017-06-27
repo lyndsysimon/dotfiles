@@ -16,10 +16,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
 
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
 set updatetime=250 " Note: This may negatively impact performance. Default is 4000.
+
+Plug 'junegunn/rainbow_parentheses.vim'
 
 call plug#end()
 " }}}
