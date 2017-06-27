@@ -136,4 +136,13 @@ nnoremap <leader>f :call ToggleFolding()<CR>
 
 " }}}
 
+"-- vim-plug {{{
+call plug#begin()
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nnoremap <leader>1 :NERDTreeToggle<CR>
+
+call plug#end()
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
