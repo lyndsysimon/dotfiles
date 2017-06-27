@@ -13,8 +13,8 @@ set path+=** "Search subdirectories recursively when trying to open a file
 "-- Remaps {{{
 let mapleader="'" "use single-quote as leader
 
-    " 'jk' leaves insert mode
-inoremap <leader>j <esc>
+    " jj leaves insert mode
+inoremap jj <esc>
     " highlight the text entered the last time you were in INSERT mode
 nnoremap gV `[v`]
 " }}}
