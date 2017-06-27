@@ -6,6 +6,10 @@
 " Write a function to ensure whitespace is stripped, except for a newline, on save
 " }}}
 
+"-- Path {{{
+set path+=** "Search subdirectories recursively when trying to open a file
+" }}}
+
 "-- Remaps {{{
 let mapleader="'" "use single-quote as leader
 
