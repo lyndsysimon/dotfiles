@@ -13,15 +13,21 @@ nnoremap gV `[v`]
 " }}}
 
 "-- Spaces & Tabs {{{
-set tabstop=4 "visual spaces per tab character
-set expandtab "use spaces instead of tabs by default
-set softtabstop=4 "number of spaces that represent a tab
-set shiftwidth=4 "number of spaces for automatic indentation
+" visual spaces per tab character
+set tabstop=4
+
+" use spaces instead of tabs by default
+set expandtab
+
+" number of spaces that represent a tab
+set softtabstop=4
+
+" number of spaces for automatic indentation
+set shiftwidth=4
 " }}}
 
 "-- Language-specific settings {{{
 augroup configgroup
-    " clear autocmds for the current group
     au!
 
     au BufEnter Makefile setlocal noexpandtab
@@ -48,19 +54,34 @@ augroup END
 " }}}
 
 "-- UI config {{{
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set colorcolumn=80
-filetype indent on "load filetype-specific indentation files
 
-set number "show line numbers
-set showcmd "show last vim command at bottom right
-set showmatch "highlight matching parens, square and curly brackets
+" load filetype-specific indentation files
+filetype indent on
+
+" show line numbers
+set number
+
+"show last vim command at bottom right
+set showcmd
+
+"highlight matching parens, square and curly brackets
+set showmatch
+
 set list!
-set lcs=tab:>-,eol:¬,trail:▒  "print invisibles
+
+" print invisibles
+set lcs=tab:>-,eol:¬,trail:▒
+
 highlight SpecialKey ctermfg=Red
 
-set wildmenu "contextual autocomplete on <Tab> for commands
-set wildignore=*~,*.pyc "ignore compiled files
+" contextual autocomplete on <Tab> for commands
+set wildmenu
+
+" ignore compiled files
+set wildignore=*~,*.pyc
 
 set modelines=1 "check last line of the file for a modeline
 
@@ -146,12 +167,6 @@ let NERDTreeDirArrows = 1
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" if nvim is opened without specifying a file, open NERDTree by default
-augroup NERDTreeConfig
-    au!
-    au StdinReadPre * let s:std_in=1
-    au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree
-augroup END
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'airblade/vim-gitgutter'
@@ -164,6 +179,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'vice'
 
 Plug 'mileszs/ack.vim'
 
@@ -180,6 +196,7 @@ let g:syntastic_check_on_wq = 0
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+let g:easytags_events = ['CursorHold', 'CursorHoldI']
 
 Plug 'majutsushi/tagbar'
 nnoremap <leader>2 :TagbarToggle<CR>
