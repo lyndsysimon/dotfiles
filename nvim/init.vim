@@ -49,10 +49,8 @@ augroup END
 
 "-- UI config {{{
 
-colorscheme slate
+set colorcolumn=80
 filetype indent on "load filetype-specific indentation files
-
-set cursorline "highlight the line the cursor is on
 
 set number "show line numbers
 set showcmd "show last vim command at bottom right
@@ -69,6 +67,13 @@ set modelines=1 "check last line of the file for a modeline
 set lazyredraw "fewer redraws == faster macros
 
 set clipboard+=unnamedplus
+
+augroup ActiveWindowHighlight
+    au!
+
+    au WinEnter * set cul
+    au WinLeave * set nocul
+augroup END
 " }}}
 
 "-- Search {{{
@@ -84,8 +89,6 @@ set foldlevelstart=10 "show most folds on open
 set foldnestmax=10 "maximum number of nested folds
     " toggle open/close with the spacebar
 nnoremap <space> za
-    " open all folds
-nnoremap <leader>f :set foldlevel=10<CR>
 set foldmethod=indent "fold based on indentation level. Python, fuck yeah.
 " }}}
 
@@ -158,13 +161,28 @@ set updatetime=250 " Note: This may negatively impact performance. Default is 40
 
 Plug 'junegunn/rainbow_parentheses.vim'
 
-Plug 'tpope/vim-fugitive'
-nnoremap <leader>gs :Gstatus<CR>
-
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 
 Plug 'mileszs/ack.vim'
+
+Plug 'scrooloose/syntastic'
+let g:syntastic_ruby_checkers = ['rubocop']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
+Plug 'majutsushi/tagbar'
+nnoremap <leader>2 :TagbarToggle<CR>
 
 call plug#end()
 " }}}
