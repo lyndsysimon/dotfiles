@@ -41,10 +41,16 @@ augroup configgroup
     au FileType javascript setlocal softtabstop=2
     au FileType javascript setlocal commentstring=//%s
 
+    au FileType json setlocal tabstop=2
+    au FileType json setlocal shiftwidth=2
+    au FileType json setlocal softtabstop=2
+    au FileType json setlocal commentstring=//%s
+
     au FileType ruby setlocal tabstop=2
     au FileType ruby setlocal shiftwidth=2
     au FileType ruby setlocal softtabstop=2
     au FileType ruby setlocal commentstring=#\ %s
+    au FileType ruby setlocal colorcolumn=99
 
     au FileType yaml setlocal tabstop=2
     au FileType yaml setlocal shiftwidth=2
@@ -194,12 +200,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-let g:easytags_events = ['CursorHold', 'CursorHoldI']
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'majutsushi/tagbar'
 nnoremap <leader>2 :TagbarToggle<CR>
+
+Plug 'baabelfish/nvim-nim'
 
 call plug#end()
 " }}}
