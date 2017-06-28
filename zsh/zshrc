@@ -8,8 +8,6 @@ PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
 
 # gems
 # TODO: Generalize this directory to support Linux
-RUBY_BIN_DIR=/usr/local/opt/ruby/bin
-[[ -d $RUBY_BIN_DIR ]] && PATH_PREPENDS=$RUBY_BIN_DIR:$PATH_PREPENDS
 
 export PATH=$PATH_PREPENDS:$PATH
 # }}}
@@ -32,7 +30,7 @@ bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
 # Vim mode
-bindkey -v
+# bindkey -v
 
 # TODO: Decide if this section is still needed
 # Make the delete key work (WTF doesn't it by default!?)
@@ -57,50 +55,55 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # }}}
 
 # --- Prompt {{{
-setopt promptsubst
+. /Users/lyndsy.simon/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
-autoload -U colors && colors
-function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i : substr($i,1,1)"/")}' }
+if [ 0 = 1 ]
+then
+    setopt promptsubst
 
-function zle-line-init zle-keymap-select precmd {
-    local EXIT_STATUS
-    EXIT_STATUS=$?
-    RPS1=''
-    # git branch
-    git branch &> /dev/null && RPS1=$RPS1$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
-    # python virtualenv
-    [[ ! -z "${VIRTUAL_ENV+_}" ]] && RPS1=$RPS1$'%F{yellow}🐍 :`basename "$VIRTUAL_ENV"`%f '
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPS1"
+    autoload -U colors && colors
+    function shortpath() { dirs | awk -F'/' '{for(i=1;i<=NF;i++) printf (i==NF ? $i : substr($i,1,1)"/")}' }
 
-    if [ -z "${KEYMAP+_}" ]
-    then
-        # this block is executed only when a new prompt is drawn, not upon redraw
-        happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' '\ (•◡•) /' '(~˘▾˘)~');
-        sad_faces=('ಠ_ಠ' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
-        # colored block for last command exit status
-        [[ EXIT_STATUS -eq 0 ]] && PS1=$'%F{green}'
-        [[ EXIT_STATUS -ne 0 ]] && PS1=$'%F{red}'
-        PS1=$PS1$'█%f'
-        # PS1=$'%(EXIT_STATUS.%F{green}.%F{red})█%f'
-        # time
-        PS1=$PS1$' %D{%H:%M:%S}'
+    function zle-line-init zle-keymap-select precmd {
+        local EXIT_STATUS
+        EXIT_STATUS=$?
+        RPS1=''
+        # git branch
+        git branch &> /dev/null && RPS1=$RPS1$'%F{cyan}⌥ :`git rev-parse --abbrev-ref HEAD`%f '
+        # python virtualenv
+        [[ ! -z "${VIRTUAL_ENV+_}" ]] && RPS1=$RPS1$'%F{yellow}🐍 :`basename "$VIRTUAL_ENV"`%f '
+        VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+        RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPS1"
 
-        # happy/sad face
-        PS1=$PS1$' %(?.%F{green}$happy_faces[RANDOM % $#happy_faces + 1].%F{red}$sad_faces[RANDOM % $#sad_faces + 1])%f'
+        if [ -z "${KEYMAP+_}" ]
+        then
+            # this block is executed only when a new prompt is drawn, not upon redraw
+            happy_faces=('( ͡° ͜ʖ ͡°)' 'ʕ•ᴥ•ʔ' '(ᵔᴥᵔ)' '(◕‿◕✿)' '\ (•◡•) /' '(~˘▾˘)~');
+            sad_faces=('ಠ_ಠ' 'ಠ ╮ ಠ' '◉ _◉' '⚆ _ ⚆');
+            # colored block for last command exit status
+            [[ EXIT_STATUS -eq 0 ]] && PS1=$'%F{green}'
+            [[ EXIT_STATUS -ne 0 ]] && PS1=$'%F{red}'
+            PS1=$PS1$'█%f'
+            # PS1=$'%(EXIT_STATUS.%F{green}.%F{red})█%f'
+            # time
+            PS1=$PS1$' %D{%H:%M:%S}'
 
-        # Location line
-        # path
-        PS1=$PS1$'\n█ [`shortpath`]-> '
-        export FROZEN_PS1=$(print -P $PS1);
-    else
-        PS1=$FROZEN_PS1
-        zle && zle reset-prompt
-    fi
-}
+            # happy/sad face
+            PS1=$PS1$' %(?.%F{green}$happy_faces[RANDOM % $#happy_faces + 1].%F{red}$sad_faces[RANDOM % $#sad_faces + 1])%f'
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+            # Location line
+            # path
+            PS1=$PS1$'\n█ [`shortpath`]-> '
+            export FROZEN_PS1=$(print -P $PS1);
+        else
+            PS1=$FROZEN_PS1
+            zle && zle reset-prompt
+        fi
+    }
+
+    zle -N zle-line-init
+    zle -N zle-keymap-select
+fi
 # }}}
 
 # --- Program-specific Settings {{{
