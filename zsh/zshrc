@@ -1,7 +1,7 @@
 # --- $PATH {{{
 
 # user scripts
-PATH_PREPENDS=~/.bin/locus:~/.bin
+PATH_PREPENDS=~/.bin/locus:~/.bin:~/Library/Python/2.7/bin
 
 # homebrew
 PATH_PREPENDS=$PATH_PREPENDS:/usr/local/bin:/usr/local/sbin
