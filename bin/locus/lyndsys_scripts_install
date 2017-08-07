@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-####################
-# Description: Install scripts in this directory into your system's PATH for ease of use
-# Author: Lyndsy Simon
-# Version: 1.0.0
-####################
-
-echo "export PATH=~/.lyndsys_dotfiles/bin/locus:PATH" >> ~/.bash_profile

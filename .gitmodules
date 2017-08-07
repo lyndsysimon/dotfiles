@@ -1,3 +1,0 @@
-[submodule "vim/vim/bundle/vim-fugitive"]
-	path = vim/vim/bundle/vim-fugitive
-	url = git@github.com:lyndsysimon/vim-fugitive.git

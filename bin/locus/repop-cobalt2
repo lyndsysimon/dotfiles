@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-####################
-# Description: Reset and populate cobalt2 using "fastest" settings
-# Author: Lyndsy Simon
-# Version: 1.1.0
-####################
-
-MONITORING_FILE_NAMES=test_data/programs/ped_card.yml RECORDS_TO_CREATE=1 MONITORING_RECORDS_TO_CREATE=1 bundle exec rake db:repop
