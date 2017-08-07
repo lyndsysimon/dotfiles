@@ -44,3 +44,7 @@
     smudge = git-media-smudge %f
 [hub]
     protocol = ssh
+[url "git@github.com:"]
+    insteadOf=gh:
+[url "git@gitlab.com:"]
+    insteadOf=gl:
